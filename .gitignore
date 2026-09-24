@@ -1,0 +1,16 @@
+# Godot generated files
+.godot/
+
+# C# / .NET build files
+bin/
+obj/
+
+# Visual Studio
+.vs/
+
+# JetBrains
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
