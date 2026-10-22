@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cfrmp4m70w0gi"]
+
+[ext_resource type="Script" uid="uid://c0fxy4j7fdy8" path="res://Code/AntiAircraftGun.cs" id="1_r7qv3"]
+[ext_resource type="Texture2D" uid="uid://cro82t3do6b6x" path="res://Art/turret1.png" id="2_jcjf3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghe0m"]
+size = Vector2(88, 36)
+
+[node name="AntiAirCraftGun" type="CharacterBody2D" unique_id=1272191285]
+script = ExtResource("1_r7qv3")
+
+[node name="Turret1" type="Sprite2D" parent="." unique_id=1404428591]
+texture = ExtResource("2_jcjf3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1200100377]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_ghe0m")
