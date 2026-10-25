@@ -12,12 +12,15 @@ size = Vector2(18, 7)
 
 [node name="Rocket" type="RigidBody2D" unique_id=1384398106]
 scale = Vector2(0.65, 0.65)
-gravity_scale = 0.5
+gravity_scale = 0.2
 linear_damp_mode = 1
-linear_damp = 0.1
+linear_damp = 0.4
 angular_damp_mode = 1
-angular_damp = 5.0
+angular_damp = 2.0
 script = ExtResource("1_dp6tq")
+ThrustForce = 380.0
+RotationTorque = 4500.0
+MaxAngularSpeed = 180.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=905169067]
 texture = ExtResource("1_lwyyb")
