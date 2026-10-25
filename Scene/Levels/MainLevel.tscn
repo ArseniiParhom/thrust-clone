@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bfnyx1u1dbtld"]
+
+[ext_resource type="PackedScene" uid="uid://bs44lbhi7i7sm" path="res://Scene/Characters/Rocket.tscn" id="1_3auna"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idito"]
+size = Vector2(640, 30)
+
+[node name="MainLevel" type="Node2D" unique_id=1186891382]
+
+[node name="Rocket" parent="." unique_id=1384398106 instance=ExtResource("1_3auna")]
+position = Vector2(320, 145)
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1058585063]
+position = Vector2(320, 350)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=283212179]
+shape = SubResource("RectangleShape2D_idito")
+
+[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=1693903452]
+offset_left = -320.0
+offset_top = -15.0
+offset_right = 320.0
+offset_bottom = 15.0
+color = Color(1, 0.6901961, 0, 1)

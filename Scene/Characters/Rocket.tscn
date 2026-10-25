@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bs44lbhi7i7sm"]
+
+[ext_resource type="Script" uid="uid://ftk7uv31i8pc" path="res://Code/Rocket.cs" id="1_dp6tq"]
+[ext_resource type="Texture2D" uid="uid://je6wt4dqkam4" path="res://Art/rocket.png" id="1_lwyyb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idito"]
+radius = 11.0
+height = 74.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idito"]
+size = Vector2(18, 7)
+
+[node name="Rocket" type="RigidBody2D" unique_id=1384398106]
+scale = Vector2(0.65, 0.65)
+gravity_scale = 0.5
+linear_damp_mode = 1
+linear_damp = 0.1
+angular_damp_mode = 1
+angular_damp = 5.0
+script = ExtResource("1_dp6tq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=905169067]
+texture = ExtResource("1_lwyyb")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=817987710]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_idito")
+
+[node name="LeftFootCollision" type="CollisionShape2D" parent="." unique_id=1943475136]
+position = Vector2(-18, 39.5)
+shape = SubResource("RectangleShape2D_idito")
+
+[node name="RightFootCollision" type="CollisionShape2D" parent="." unique_id=1341256374]
+position = Vector2(19, 40)
+shape = SubResource("RectangleShape2D_idito")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1397288641]
