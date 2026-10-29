@@ -68,3 +68,4 @@ rocket_thrust={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0.072842576, 0.07284265, 0.072842635, 1)

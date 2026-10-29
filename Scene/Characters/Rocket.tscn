@@ -11,7 +11,6 @@ height = 74.0
 size = Vector2(18, 7)
 
 [node name="Rocket" type="RigidBody2D" unique_id=1384398106]
-scale = Vector2(0.65, 0.65)
 gravity_scale = 0.2
 linear_damp_mode = 1
 linear_damp = 0.4
