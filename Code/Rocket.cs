@@ -16,7 +16,7 @@ public partial class Rocket : RigidBody2D
 		// Rotate the rocket using physics torque
 		float rotationInput = Input.GetAxis(
 			Config.RotateLeftActionName,
-            Config.RotateRightActionName
+			Config.RotateRightActionName
 		);
 
 		if (Mathf.Abs(rotationInput) > 0.01f)

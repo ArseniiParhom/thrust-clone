@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://je6wt4dqkam4"
-path="res://.godot/imported/rocket.png-405a8012fbeabf4662206b4916b0db75.ctex"
+uid="uid://cv14gkvawes05"
+path="res://.godot/imported/rocket.png-2db9378fbdff87f8deb96d4bd2034ae7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/rocket.png"
-dest_files=["res://.godot/imported/rocket.png-405a8012fbeabf4662206b4916b0db75.ctex"]
+source_file="res://Art/Characters/rocket.png"
+dest_files=["res://.godot/imported/rocket.png-2db9378fbdff87f8deb96d4bd2034ae7.ctex"]
 
 [params]
 

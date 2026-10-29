@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 namespace Thrust.Characters{
-public partial class AntiAircraftGun : CharacterBody2D
+public partial class AntiAircraftGun : StaticBody2D
 	{
 		
 	}
