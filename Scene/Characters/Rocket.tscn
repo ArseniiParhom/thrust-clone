@@ -10,7 +10,7 @@ height = 74.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idito"]
 size = Vector2(18, 7)
 
-[node name="Rocket" type="RigidBody2D" unique_id=1384398106]
+[node name="Rocket" type="RigidBody2D" unique_id=1384398106 groups=["rocket"]]
 gravity_scale = 0.2
 linear_damp_mode = 1
 linear_damp = 0.4
@@ -21,7 +21,7 @@ ThrustForce = 380.0
 RotationTorque = 4500.0
 MaxAngularSpeed = 180.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=905169067]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=905169067 groups=["rocket"]]
 texture = ExtResource("2_dp6tq")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=817987710]

@@ -6,7 +6,8 @@
 [node name="MainLevel" type="Node2D" unique_id=1186891382]
 
 [node name="Level1" parent="." unique_id=1237842501 instance=ExtResource("2_2k4q3")]
+position = Vector2(15, -1)
 
 [node name="Rocket" parent="." unique_id=1384398106 instance=ExtResource("1_3auna")]
-position = Vector2(320, 145)
+position = Vector2(630, -14)
 collision_mask = 3

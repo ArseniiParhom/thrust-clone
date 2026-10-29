@@ -35,6 +35,10 @@ folder_colors={
 "res://Scene/": "purple"
 }
 
+[global_group]
+
+rocket=""
+
 [input]
 
 rocket_rotate_left={
