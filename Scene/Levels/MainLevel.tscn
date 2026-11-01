@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bs44lbhi7i7sm" path="res://Scene/Characters/Rocket.tscn" id="1_3auna"]
 [ext_resource type="PackedScene" uid="uid://dk5aq22ir7078" path="res://Scene/Levels/Level1.tscn" id="2_2k4q3"]
+[ext_resource type="PackedScene" uid="uid://docnn278vned" path="res://Scene/Characters/LandingPad.tscn" id="3_lnwy5"]
 
 [node name="MainLevel" type="Node2D" unique_id=1186891382]
 
@@ -9,5 +10,31 @@
 position = Vector2(15, -1)
 
 [node name="Rocket" parent="." unique_id=1384398106 instance=ExtResource("1_3auna")]
-position = Vector2(630, -14)
+position = Vector2(631, -18)
 collision_mask = 3
+ThrustForce = 350.0
+RotationTorque = 3500.0
+RocketSize = 0.65
+
+[node name="LandingPad" parent="." unique_id=826116055 instance=ExtResource("3_lnwy5")]
+position = Vector2(1161, 537)
+
+[node name="LandingNotification" type="CanvasLayer" parent="." unique_id=357075434]
+
+[node name="SuccessLabel" type="Label" parent="LandingNotification" unique_id=313103173]
+visible = false
+offset_left = 170.0
+offset_top = 20.0
+offset_right = 470.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 20
+text = "LANDING SUCCESSFUL!"
+horizontal_alignment = 1
+
+[node name="HideTimer" type="Timer" parent="LandingNotification" unique_id=437711028]
+wait_time = 2.5
+one_shot = true
+
+[connection signal="LandingSucceeded" from="LandingPad" to="LandingNotification/SuccessLabel" method="show"]
+[connection signal="LandingSucceeded" from="LandingPad" to="LandingNotification/HideTimer" method="start"]
+[connection signal="timeout" from="LandingNotification/HideTimer" to="LandingNotification/SuccessLabel" method="hide"]

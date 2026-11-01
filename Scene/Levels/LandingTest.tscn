@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dt0l5c8gqkr1h"]
+
+[ext_resource type="PackedScene" uid="uid://bs44lbhi7i7sm" path="res://Scene/Characters/Rocket.tscn" id="1_eikor"]
+[ext_resource type="PackedScene" uid="uid://docnn278vned" path="res://Scene/Characters/LandingPad.tscn" id="2_smfo7"]
+
+[node name="LandingTest" type="Node2D" unique_id=339513378]
+
+[node name="Rocket" parent="." unique_id=1384398106 instance=ExtResource("1_eikor")]
+position = Vector2(320, 125)
+collision_mask = 3
+
+[node name="LandingPad" parent="." unique_id=826116055 instance=ExtResource("2_smfo7")]
+position = Vector2(320, 300)
