@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://intgjycx5rah"]
+
+[ext_resource type="Script" uid="uid://cr4hkgcapv7ds" path="res://Code/Combat/Bullet.cs" id="1_mcmwt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_68yrv"]
+radius = 2.0
+
+[node name="Bullet" type="Area2D" unique_id=807774840]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_mcmwt")
+_color = Color(0.8117647, 0.6509804, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1978004066]
+shape = SubResource("CircleShape2D_68yrv")

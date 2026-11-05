@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://c0fxy4j7fdy8" path="res://Code/AntiAircraftGun.cs" id="1_r7qv3"]
 [ext_resource type="Texture2D" uid="uid://dld0rs0s8har1" path="res://Art/Characters/TurretBase.png" id="2_jcjf3"]
 [ext_resource type="Texture2D" uid="uid://bis2gpipwt8rp" path="res://Art/Characters/TurretBarrel.png" id="3_37uyi"]
+[ext_resource type="Script" uid="uid://dx6giwja3vlqr" path="res://Code/Combat/Gun.cs" id="4_37uyi"]
+[ext_resource type="PackedScene" uid="uid://intgjycx5rah" path="res://Scene/Characters/Bullet.tscn" id="5_a8g63"]
 
-[node name="AntiAirCraftGun" type="StaticBody2D" unique_id=1520185745 node_paths=PackedStringArray("_headPivot")]
+[node name="AntiAirCraftGun" type="StaticBody2D" unique_id=1520185745 node_paths=PackedStringArray("_headPivot", "_gun")]
 script = ExtResource("1_r7qv3")
 _headPivot = NodePath("HeadPivot")
+_gun = NodePath("HeadPivot/Muzzle")
 
 [node name="TurretBase" type="Sprite2D" parent="." unique_id=104928191]
 position = Vector2(0.79999536, -20)
@@ -26,3 +29,8 @@ position = Vector2(-2.8421713e-14, -44)
 rotation = -1.5742869
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_37uyi")
+
+[node name="Muzzle" type="Node2D" parent="HeadPivot" unique_id=585331926]
+position = Vector2(-0.7999954, -75)
+script = ExtResource("4_37uyi")
+_bulletScene = ExtResource("5_a8g63")
