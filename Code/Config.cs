@@ -7,5 +7,7 @@ namespace Thrust.Configuration
         public const string RotateRightActionName = "rocket_rotate_right";
 
         public const string RocketGroupName = "rocket";
+
+        public const int InitialLives = 3;
     }
 }
