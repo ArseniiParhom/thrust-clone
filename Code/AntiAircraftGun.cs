@@ -8,8 +8,11 @@ public partial class AntiAircraftGun : StaticBody2D
 		[Export] private float _range = 300f;
 		[Export] private float _speed = 2.5f;
 		[Export] private Node2D _headPivot;
-
 		[Export] private Vector2 _direction = new Vector2(1,-1);
+		[Export] private Gun _gun;
+		[Export] private float _fireTolerance = 0.1f;
+
+
 		private Rocket _rocket;
 
 		private float _aimAngle = -Mathf.Pi / 2;
@@ -56,6 +59,20 @@ public partial class AntiAircraftGun : StaticBody2D
 
 
 			_headPivot.Rotation = _aimAngle + Mathf.Pi / 2;
+
+			Shoot(targetAngle);
+		}
+
+		private void Shoot(float targetAngle)
+		{
+			if (_gun == null) {return;}
+
+			bool isAimed = Mathf.Abs(Mathf.AngleDifference(_aimAngle, targetAngle)) < _fireTolerance;
+
+			if (isAimed)
+			{
+				_gun.Fire(Vector2.FromAngle(_aimAngle + GlobalRotation));
+			}
 		}
 
 		
