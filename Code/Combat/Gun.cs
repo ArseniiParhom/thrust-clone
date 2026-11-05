@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+namespace Thrust.Combat{
 public partial class Gun : Node2D
 {
 	[Export] private PackedScene _bulletScene = null;
@@ -43,4 +44,5 @@ public partial class Gun : Node2D
 		
 		return true;
 	}
+}
 }
