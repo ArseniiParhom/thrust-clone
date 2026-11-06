@@ -25,14 +25,15 @@ namespace Thrust.Systems
 			}
 		}
 		#endregion Singleton
-		
+
+		[Signal] public delegate void GameOverEventHandler();
 		[Signal] public delegate void ScoreChangedEventHandler(int newScore);
 		[Signal] public delegate void LivesChangedEventHandler(int newLives);
 		[Signal] public delegate void RespawnEventHandler();
-		[Signal] public delegate void GameOverEventHandler();
 
 		private int _score = 0;
 		private int _lives = Config.InitialLives;
+		private bool _isGameOver = false;
 
 		private SceneTree _sceneTree = null;
 		private List<GameStateBase> _gameStates = new List<GameStateBase>
@@ -181,6 +182,14 @@ namespace Thrust.Systems
 			// Callable.From(ResetGameData).CallDeferred();
 
 			return true;
+		}
+		public void EndGame()
+		{
+			if (_isGameOver) {return;}
+
+			_isGameOver = true;
+			GD.Print("Game Over!");
+			EmitSignal(SignalName.GameOver);
 		}
 		public void AddScore(int amount)
 		{

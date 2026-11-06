@@ -1,17 +1,22 @@
 using Godot;
 using Thrust.Combat;
 using Thrust.Configuration;
+using Thrust.Systems;
 
 namespace Thrust.Characters
 {
 	[Tool]
 	public partial class Rocket : RigidBody2D, IDamageable
 	{
+		[Signal] public delegate void HealthChangedEventHandler(int current, int max);
 		[Export] public float ThrustForce = 300f;
 		[Export] public float RotationTorque = 900f;
 
 		[Export] public float MaxLinearSpeed = 160f;
 		[Export] public float MaxAngularSpeed = 100f;
+
+		[Export] private int _maxHealth = 3;
+		private int _health;
 
 		private float _rocketSize = 1f;
 
@@ -28,9 +33,27 @@ namespace Thrust.Characters
 			}
 		}
 
+		public int MaxHealth
+		{
+			get { return _maxHealth;}
+		}
+
+		public int CurrentHealth
+		{
+			get { return _health; }
+			private set { _health = value; }
+		}
+
+		public bool IsDead
+		{
+			get {return _health <= 0;}
+		}
+
 		public override void _Ready()
 		{
 			ApplyRocketSize();
+			CurrentHealth = MaxHealth;
+
 		}
 
 		private void ApplyRocketSize()
@@ -128,8 +151,15 @@ namespace Thrust.Characters
 
 		public void TakeDamage(int amount)
 		{
-			//TODO: implement combat for taking damage 
 			GD.Print($"Rocket hit. Damage: {amount}");
+			if (IsDead){ return; }
+			CurrentHealth = Mathf.Max(CurrentHealth - amount, 0);
+			EmitSignal(SignalName.HealthChanged, CurrentHealth, MaxHealth);
+
+			if (CurrentHealth == 0)
+			{
+				GameManager.Instance.EndGame();
+			}
 		}
 	}
 }
