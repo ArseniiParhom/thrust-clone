@@ -22,12 +22,14 @@ namespace Thrust.Systems
 			}
 		}
 		#endregion Singleton
-		
+
+		[Signal] public delegate void GameOverEventHandler();
 		[Signal] public delegate void ScoreChangedEventHandler(int newScore);
 		[Signal] public delegate void LivesChangedEventHandler(int newLives);
 
 		private int _score = 0;
 		private int _lives = Config.InitialLives;
+		private bool _isGameOver = false;
 
 		#region Properties
 		public int Score
@@ -52,6 +54,15 @@ namespace Thrust.Systems
 
 		#region Accessors
 		// TODO: Add methods here to modify GameManagers Properties
+
+		public void EndGame()
+		{
+			if (_isGameOver) {return;}
+
+			_isGameOver = true;
+			GD.Print("Game Over!");
+			EmitSignal(SignalName.GameOver);
+		}
 		#endregion Accessors
 	}
 }

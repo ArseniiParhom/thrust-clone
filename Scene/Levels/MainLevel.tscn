@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bs44lbhi7i7sm" path="res://Scene/Characters/Rocket.tscn" id="1_3auna"]
 [ext_resource type="PackedScene" uid="uid://dk5aq22ir7078" path="res://Scene/Levels/Level1.tscn" id="2_2k4q3"]
 [ext_resource type="PackedScene" uid="uid://docnn278vned" path="res://Scene/Characters/LandingPad.tscn" id="3_lnwy5"]
+[ext_resource type="PackedScene" uid="uid://d1hju74v7ecby" path="res://Scene/HUD/HUD.tscn" id="4_gr4ap"]
+[ext_resource type="Script" uid="uid://ejt5y18f2odc" path="res://Code/UI/HUD.cs" id="5_pdwyb"]
 
 [node name="MainLevel" type="Node2D" unique_id=1186891382]
 
@@ -35,6 +37,20 @@ horizontal_alignment = 1
 wait_time = 2.5
 one_shot = true
 
+[node name="HUD" parent="." unique_id=1633659929 node_paths=PackedStringArray("_rocket", "_healthbar") instance=ExtResource("4_gr4ap")]
+script = ExtResource("5_pdwyb")
+_rocket = NodePath("../Rocket")
+_healthbar = NodePath("HealthBar")
+
+[node name="HealthBar" parent="HUD" index="0" unique_id=1168672585]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 69.0
+offset_bottom = 17.0
+scale = Vector2(2, 2)
+
 [connection signal="LandingSucceeded" from="LandingPad" to="LandingNotification/SuccessLabel" method="show"]
 [connection signal="LandingSucceeded" from="LandingPad" to="LandingNotification/HideTimer" method="start"]
 [connection signal="timeout" from="LandingNotification/HideTimer" to="LandingNotification/SuccessLabel" method="hide"]
+
+[editable path="HUD"]
