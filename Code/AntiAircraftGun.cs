@@ -44,7 +44,7 @@ public partial class AntiAircraftGun : StaticBody2D
 		public override void _PhysicsProcess(double delta)
 		{
 			float deltaTime = (float)delta;
-			if (_rocket == null || _headPivot == null) { return; }
+			if (_rocket == null || _rocket.IsDead || _headPivot == null) { return; }
 
 			if (GlobalPosition.DistanceTo(_rocket.GlobalPosition) > _range) { return; }
 

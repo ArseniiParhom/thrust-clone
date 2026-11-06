@@ -14,6 +14,10 @@ config/name="ThrustClone"
 run/main_scene="uid://bfnyx1u1dbtld"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 
+[autoload]
+
+GameManager="*uid://daukbforl3oo2"
+
 [display]
 
 window/size/viewport_width=640
