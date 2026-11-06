@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://ipbbm7b8ak3l"]
-
-[ext_resource type="Texture2D" uid="uid://b5ammqn4txtl7" path="res://Art/hud_s2 16.33.04.png" id="1_23ixr"]
-
-[node name="HealthBar" type="Node2D" unique_id=1589304208]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1567860198]
-texture = ExtResource("1_23ixr")
