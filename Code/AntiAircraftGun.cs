@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Thrust.Combat;
 using Thrust.Configuration;
 
 namespace Thrust.Characters{
