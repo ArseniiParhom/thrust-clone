@@ -2,18 +2,19 @@ using Godot;
 using System;
 using Thrust.Characters;
 namespace Thrust.UI{
-public partial class HealthBar : ProgressBar
+public partial class HealthBar : TextureProgressBar
 	{
-		// TODO: dont export the rocket here. Health bar won't be directly on the MainLevel
-		[Export] private Rocket _rocket;
+		private Rocket _rocket;
 
-		public override void _Ready()
+		public void Bind(Rocket rocket)
 		{
-			if(_rocket == null)
+			if(rocket == null)
 			{
 				GD.PushError("No rocket found to assign the health bar");
 				return;
 			}
+
+			_rocket = rocket;
 
 			MaxValue = _rocket.MaxHealth;
 			Value = _rocket.MaxHealth;
