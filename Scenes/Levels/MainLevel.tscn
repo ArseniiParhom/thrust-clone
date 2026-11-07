@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bfnyx1u1dbtld"]
 
-[ext_resource type="PackedScene" uid="uid://bs44lbhi7i7sm" path="res://Scene/Characters/Rocket.tscn" id="1_3auna"]
-[ext_resource type="PackedScene" uid="uid://dk5aq22ir7078" path="res://Scene/Levels/Level1.tscn" id="2_2k4q3"]
-[ext_resource type="PackedScene" uid="uid://docnn278vned" path="res://Scene/Characters/LandingPad.tscn" id="3_lnwy5"]
+[ext_resource type="PackedScene" uid="uid://bs44lbhi7i7sm" path="res://Scenes/Characters/Rocket.tscn" id="1_3auna"]
+[ext_resource type="PackedScene" uid="uid://dk5aq22ir7078" path="res://Scenes/Levels/Level1.tscn" id="2_2k4q3"]
+[ext_resource type="PackedScene" uid="uid://docnn278vned" path="res://Scenes/Characters/LandingPad.tscn" id="3_lnwy5"]
 
 [node name="MainLevel" type="Node2D" unique_id=1186891382]
 
