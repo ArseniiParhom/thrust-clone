@@ -108,8 +108,8 @@ namespace Thrust.Systems
 			Score = 0;
 			Lives = Config.InitialLives;
 
-			// To start the game InGame
-			//ChangeState(GameStateType.InGame, force: true);
+			// DEBUG: To start the game InGame
+			// ChangeState(GameStateType.Settings, force: true);
 		}
 
 		#region Accessors
