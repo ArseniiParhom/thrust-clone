@@ -32,7 +32,7 @@ namespace Thrust.Systems.State
         /// <summary>
         /// A reference to the scenen assoviated with this state
         /// </summary>
-        private Node _scene = null;
+        protected Node _scene = null;
         protected GameStateBase()
         {
 

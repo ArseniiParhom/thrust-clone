@@ -33,7 +33,6 @@ namespace Thrust.Systems
 
 		private int _score = 0;
 		private int _lives = Config.InitialLives;
-		private bool _isGameOver = false;
 
 		private SceneTree _sceneTree = null;
 		private List<GameStateBase> _gameStates = new List<GameStateBase>
@@ -185,9 +184,10 @@ namespace Thrust.Systems
 		}
 		public void EndGame()
 		{
-			if (_isGameOver) {return;}
-
-			_isGameOver = true;
+			if (!ChangeState(GameStateType.GameOver))
+			{
+				GD.PushError("Failed to change state to GameOver.");
+			}
 			GD.Print("Game Over!");
 			EmitSignal(SignalName.GameOver);
 		}
@@ -196,6 +196,7 @@ namespace Thrust.Systems
 			if (amount <= 0) return;
 			Score += amount;
 		}
+		//TODO: Get clear if Lives should be used
 		public void IncrementLives()
 		{
 			Lives++;
