@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://bfnyx1u1dbtld"]
 
-[ext_resource type="PackedScene" uid="uid://bs44lbhi7i7sm" path="res://Scene/Characters/Rocket.tscn" id="1_3auna"]
-[ext_resource type="PackedScene" uid="uid://dk5aq22ir7078" path="res://Scene/Levels/Level1.tscn" id="2_2k4q3"]
-[ext_resource type="PackedScene" uid="uid://docnn278vned" path="res://Scene/Characters/LandingPad.tscn" id="3_lnwy5"]
-[ext_resource type="PackedScene" uid="uid://d1hju74v7ecby" path="res://Scene/HUD/HUD.tscn" id="4_gr4ap"]
+[ext_resource type="PackedScene" uid="uid://bs44lbhi7i7sm" path="res://Scenes/Characters/Rocket.tscn" id="1_3auna"]
+[ext_resource type="PackedScene" uid="uid://dk5aq22ir7078" path="res://Scenes/Levels/Level1.tscn" id="2_2k4q3"]
+[ext_resource type="PackedScene" uid="uid://docnn278vned" path="res://Scenes/Characters/LandingPad.tscn" id="3_lnwy5"]
+[ext_resource type="PackedScene" uid="uid://d1hju74v7ecby" path="res://Scenes/HUD/HUD.tscn" id="4_gr4ap"]
 [ext_resource type="Script" uid="uid://ejt5y18f2odc" path="res://Code/UI/HUD.cs" id="5_pdwyb"]
+[ext_resource type="AudioStream" uid="uid://w4xrrlu1hmg3" path="res://Audio/jimgor33-timelapse-164084.wav" id="6_rqyoi"]
 
 [node name="MainLevel" type="Node2D" unique_id=1186891382]
 
@@ -48,6 +49,11 @@ offset_top = 5.0
 offset_right = 69.0
 offset_bottom = 17.0
 scale = Vector2(2, 2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=20119157]
+stream = ExtResource("6_rqyoi")
+autoplay = true
+bus = &"Music"
 
 [connection signal="LandingSucceeded" from="LandingPad" to="LandingNotification/SuccessLabel" method="show"]
 [connection signal="LandingSucceeded" from="LandingPad" to="LandingNotification/HideTimer" method="start"]

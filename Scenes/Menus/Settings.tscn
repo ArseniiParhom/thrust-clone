@@ -104,19 +104,24 @@ offset_right = -4.0
 offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
 
 [node name="MainMenu" type="Button" parent="NinePatchRect/HBoxContainer" unique_id=1042124894]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "MAIN MENU"
 
 [node name="Cancel" type="Button" parent="NinePatchRect/HBoxContainer" unique_id=244878372]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "CANCEL"
 
 [node name="Save" type="Button" parent="NinePatchRect/HBoxContainer" unique_id=1823571233]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "SAVE"
 
 [node name="Ok" type="Button" parent="NinePatchRect/HBoxContainer" unique_id=1166801863]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "OK"

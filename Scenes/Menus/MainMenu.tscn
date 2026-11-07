@@ -5,9 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://vledh5oxu0bt" path="res://Art/Background/moon_back.png" id="3_q15nq"]
 [ext_resource type="Texture2D" uid="uid://cv14gkvawes05" path="res://Art/Characters/rocket.png" id="4_pbd8g"]
 [ext_resource type="Texture2D" uid="uid://c6c3rwj63f4od" path="res://Art/Background/moon_earth.png" id="5_7as8u"]
+[ext_resource type="AudioStream" uid="uid://dkk8ixnxox5cs" path="res://Audio/bernivoyage-a-journey-through-the-stars-333053.wav" id="6_mc63j"]
+[ext_resource type="AudioStream" uid="uid://c4xbq4mu6qbc0" path="res://Audio/bernivoyage-at-midnight-under-a-full-moon_2-334160.wav" id="7_7as8u"]
+[ext_resource type="AudioStream" uid="uid://g5hod6826i0t" path="res://Audio/bernivoyage-dancing-under-the-full-moon_2-334196.wav" id="8_ts2fx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pw2ir"]
 font_size = 60
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mc63j"]
+streams_count = 3
+stream_0/stream = ExtResource("6_mc63j")
+stream_0/weight = 10.0
+stream_1/stream = ExtResource("7_7as8u")
+stream_1/weight = 10.0
+stream_2/stream = ExtResource("8_ts2fx")
+stream_2/weight = 10.0
 
 [node name="MainMenu" type="Control" unique_id=590880038 node_paths=PackedStringArray("_newGameButton", "_settingsButton", "_quitGameButton")]
 layout_mode = 3
@@ -83,3 +95,8 @@ text = "SETTINGS"
 [node name="Quit" type="Button" parent="VBoxContainer" unique_id=1838790023]
 layout_mode = 2
 text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=909410627]
+stream = SubResource("AudioStreamRandomizer_mc63j")
+autoplay = true
+bus = &"Music"
