@@ -1,3 +1,5 @@
+using Godot;
+
 namespace Thrust.Systems.State
 {
     public class InGameState : GameStateBase
@@ -10,6 +12,13 @@ namespace Thrust.Systems.State
             AddTargetState(GameStateType.Win);
             AddTargetState(GameStateType.GameOver);
             AddTargetState(GameStateType.InGame); // For level completion
+        }
+
+        public override void OnEnter(bool forceLoad = false)
+        {
+            base.OnEnter(forceLoad);
+
+            GameManager.Instance.SceneTree.SetDeferred(SceneTree.PropertyName.CurrentScene, _scene);
         }
 
         public override void OnExit(bool keepLoaded)
