@@ -6,6 +6,8 @@ public partial class Gun : Node2D
 {
 	[Export] private PackedScene _bulletScene = null;
 	[Export] private float _cooldown = 1.2f;
+
+	[Export] private float _bulletSpeed = 0f;
 	
 	private float _cooldownLeft;
 	public bool CanFire
@@ -36,6 +38,11 @@ public partial class Gun : Node2D
 
 
 		Bullet bullet = _bulletScene.Instantiate<Bullet>();
+
+		if (_bulletSpeed > 0f)
+		{
+			bullet.Speed = _bulletSpeed;   
+		}
 
 		GetTree().CurrentScene.AddChild(bullet);
 		bullet.Launch(GlobalPosition, direction);

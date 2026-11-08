@@ -2,9 +2,10 @@ using Godot;
 using System;
 using Thrust.Combat;
 using Thrust.Configuration;
+using Thrust.Systems;
 
 namespace Thrust.Characters{
-public partial class AntiAircraftGun : StaticBody2D
+public partial class AntiAircraftGun : StaticBody2D, IDamageable
 	{
 		[Export] private float _range = 300f;
 		[Export] private float _speed = 2.5f;
@@ -13,7 +14,7 @@ public partial class AntiAircraftGun : StaticBody2D
 		[Export] private Gun _gun;
 		[Export] private float _fireTolerance = 0.1f;
 
-
+		private bool _isDestroyed = false;
 		private Rocket _rocket;
 
 		private float _aimAngle = -Mathf.Pi / 2;
@@ -76,6 +77,13 @@ public partial class AntiAircraftGun : StaticBody2D
 			}
 		}
 
-		
+		public void TakeDamage(int amount)
+		{
+			if (_isDestroyed){ return;}
+
+			_isDestroyed = true;
+
+			QueueFree();
+		}
 	}
 }

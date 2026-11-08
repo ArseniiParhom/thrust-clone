@@ -5,7 +5,6 @@ using Thrust.Systems;
 
 namespace Thrust.Characters
 {
-	[Tool]
 	public partial class Rocket : RigidBody2D, IDamageable
 	{
 		[Signal] public delegate void HealthChangedEventHandler(int current, int max);
@@ -14,6 +13,7 @@ namespace Thrust.Characters
 
 		[Export] public float MaxLinearSpeed = 160f;
 		[Export] public float MaxAngularSpeed = 100f;
+		[Export] private Gun _gun ;
 
 		[Export] private int _maxHealth = 3;
 		private int _health;
@@ -104,9 +104,6 @@ namespace Thrust.Characters
 
 		public override void _PhysicsProcess(double delta)
 		{
-			if (Engine.IsEditorHint())
-				return;
-
 			float rotationInput = Input.GetAxis(
 				Config.RotateLeftActionName,
 				Config.RotateRightActionName
@@ -122,13 +119,16 @@ namespace Thrust.Characters
 				Vector2 thrustDirection = -GlobalTransform.Y;
 				ApplyCentralForce(thrustDirection * ThrustForce);
 			}
+
+			if (!IsDead && _gun != null && Input.IsActionPressed(Config.ShootActionName))
+			{
+				_gun.Fire(-GlobalTransform.Y);
+			}
 		}
 
 		public override void _IntegrateForces(
 			PhysicsDirectBodyState2D state)
 		{
-			if (Engine.IsEditorHint())
-				return;
 
 			if (MaxLinearSpeed > 0f)
 			{

@@ -20,6 +20,7 @@ public partial class Bullet : Area2D
 	public float Speed
 	{
 		get {return _speed;}
+		set {_speed = value;}
 	}
 
 	public Vector2 Direction{
