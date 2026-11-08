@@ -15,8 +15,6 @@ position = Vector2(15, -1)
 [node name="Rocket" parent="." unique_id=1384398106 instance=ExtResource("1_3auna")]
 position = Vector2(631, -18)
 collision_mask = 3
-ThrustForce = 350.0
-RotationTorque = 3500.0
 RocketSize = 0.65
 
 [node name="LandingPad" parent="." unique_id=826116055 instance=ExtResource("3_lnwy5")]
@@ -53,7 +51,6 @@ scale = Vector2(2, 2)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=20119157]
 stream = ExtResource("6_rqyoi")
 autoplay = true
-bus = &"Music"
 
 [connection signal="LandingSucceeded" from="LandingPad" to="LandingNotification/SuccessLabel" method="show"]
 [connection signal="LandingSucceeded" from="LandingPad" to="LandingNotification/HideTimer" method="start"]

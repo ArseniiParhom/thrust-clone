@@ -2,19 +2,21 @@
 
 [ext_resource type="Script" uid="uid://ftk7uv31i8pc" path="res://Code/Rocket.cs" id="1_dp6tq"]
 [ext_resource type="Texture2D" uid="uid://cv14gkvawes05" path="res://Art/Characters/rocket.png" id="2_dp6tq"]
+[ext_resource type="Script" uid="uid://dx6giwja3vlqr" path="res://Code/Combat/Gun.cs" id="3_x18n3"]
+[ext_resource type="PackedScene" uid="uid://cvba72dd6mgdg" path="res://Scenes/Characters/RocketBullet.tscn" id="4_esc57"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dp6tq"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x18n3"]
 radius = 11.0
 height = 74.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ocns"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esc57"]
 size = Vector2(18, 7)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ixjk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0ktp"]
 size = Vector2(18, 7)
 
-[node name="Rocket" type="RigidBody2D" unique_id=1384398106 groups=["rocket"]]
-gravity_scale = 0.2
+[node name="Rocket" type="RigidBody2D" unique_id=1384398106 node_paths=PackedStringArray("_gun") groups=["rocket"]]
+gravity_scale = 0.05
 contact_monitor = true
 max_contacts_reported = 8
 linear_damp_mode = 1
@@ -22,23 +24,29 @@ linear_damp = 0.4
 angular_damp_mode = 1
 angular_damp = 2.0
 script = ExtResource("1_dp6tq")
-ThrustForce = 380.0
-RotationTorque = 4500.0
-MaxAngularSpeed = 180.0
+_gun = NodePath("Muzzle")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=905169067 groups=["rocket"]]
+texture_filter = 1
 texture = ExtResource("2_dp6tq")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=817987710]
 position = Vector2(0, -4)
-shape = SubResource("CapsuleShape2D_dp6tq")
+shape = SubResource("CapsuleShape2D_x18n3")
 
 [node name="LeftFootCollision" type="CollisionShape2D" parent="." unique_id=1943475136]
 position = Vector2(-18, 39.5)
-shape = SubResource("RectangleShape2D_1ocns")
+shape = SubResource("RectangleShape2D_esc57")
 
 [node name="RightFootCollision" type="CollisionShape2D" parent="." unique_id=1341256374]
 position = Vector2(19, 40)
-shape = SubResource("RectangleShape2D_0ixjk")
+shape = SubResource("RectangleShape2D_m0ktp")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1397288641]
+
+[node name="Muzzle" type="Node2D" parent="." unique_id=1510080786]
+position = Vector2(0, -42)
+script = ExtResource("3_x18n3")
+_bulletScene = ExtResource("4_esc57")
+_cooldown = 0.1
+_bulletSpeed = 300.0
