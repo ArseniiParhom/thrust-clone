@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bn7fi2cutcrmw"]
+
+[ext_resource type="Script" uid="uid://cjtso68k4xjjx" path="res://Code/UI/MainMenuControl.cs" id="1_uv623"]
+[ext_resource type="Texture2D" uid="uid://b5dgpchgdopm" path="res://Art/Background/Nebula Blue.png" id="2_mc63j"]
+[ext_resource type="Texture2D" uid="uid://vledh5oxu0bt" path="res://Art/Background/moon_back.png" id="3_q15nq"]
+[ext_resource type="Texture2D" uid="uid://cv14gkvawes05" path="res://Art/Characters/rocket.png" id="4_pbd8g"]
+[ext_resource type="Texture2D" uid="uid://c6c3rwj63f4od" path="res://Art/Background/moon_earth.png" id="5_7as8u"]
+[ext_resource type="AudioStream" uid="uid://dkk8ixnxox5cs" path="res://Audio/bernivoyage-a-journey-through-the-stars-333053.wav" id="6_mc63j"]
+[ext_resource type="AudioStream" uid="uid://c4xbq4mu6qbc0" path="res://Audio/bernivoyage-at-midnight-under-a-full-moon_2-334160.wav" id="7_7as8u"]
+[ext_resource type="AudioStream" uid="uid://g5hod6826i0t" path="res://Audio/bernivoyage-dancing-under-the-full-moon_2-334196.wav" id="8_ts2fx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pw2ir"]
+font_size = 60
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mc63j"]
+streams_count = 3
+stream_0/stream = ExtResource("6_mc63j")
+stream_0/weight = 10.0
+stream_1/stream = ExtResource("7_7as8u")
+stream_1/weight = 10.0
+stream_2/stream = ExtResource("8_ts2fx")
+stream_2/weight = 10.0
+
+[node name="MainMenu" type="Control" unique_id=590880038 node_paths=PackedStringArray("_newGameButton", "_settingsButton", "_quitGameButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uv623")
+_newGameButton = NodePath("VBoxContainer/Start")
+_settingsButton = NodePath("VBoxContainer/Settings")
+_quitGameButton = NodePath("VBoxContainer/Quit")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=854468908]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mc63j")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MoonBack" type="Sprite2D" parent="." unique_id=22818239]
+position = Vector2(321, 320)
+scale = Vector2(0.22394729, 0.16400006)
+texture = ExtResource("3_q15nq")
+
+[node name="Rocket" type="Sprite2D" parent="." unique_id=1714332751]
+position = Vector2(123, 308)
+texture = ExtResource("4_pbd8g")
+
+[node name="MoonEarth" type="Sprite2D" parent="." unique_id=1825569106]
+position = Vector2(741.00006, 179)
+scale = Vector2(0.46578947, 0.449)
+texture = ExtResource("5_7as8u")
+
+[node name="Label" type="Label" parent="." unique_id=139224212]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 150.0
+grow_horizontal = 2
+text = "Kuualus"
+label_settings = SubResource("LabelSettings_pw2ir")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1664473814]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -10.0
+offset_right = 75.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="VBoxContainer" unique_id=710467067]
+layout_mode = 2
+text = "START"
+
+[node name="Settings" type="Button" parent="VBoxContainer" unique_id=1334672107]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=1838790023]
+layout_mode = 2
+text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=909410627]
+stream = SubResource("AudioStreamRandomizer_mc63j")
+autoplay = true
+bus = &"Music"

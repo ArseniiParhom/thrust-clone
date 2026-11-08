@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://5ms4pgic8bu2"]
+
+[ext_resource type="Script" uid="uid://g26rdcvhu6tr" path="res://Code/UI/SettingsControl.cs" id="1_0le60"]
+[ext_resource type="Texture2D" uid="uid://dpg58ne0umrpe" path="res://Art/Background/ground_background.png" id="1_s5ji3"]
+[ext_resource type="PackedScene" uid="uid://cnksqfgavgva7" path="res://Scenes/UI/AudioControl.tscn" id="2_0le60"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e6s6k"]
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_he6jc"]
+font_size = 13
+
+[node name="Settings" type="Control" unique_id=350449844 node_paths=PackedStringArray("_masterAudioControl", "_musicAudioControl", "_sfxAudioControl", "_mainMenuButton", "_cancelButton", "_saveButton", "_okButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0le60")
+_masterAudioControl = NodePath("NinePatchRect/VBoxContainer/Master")
+_musicAudioControl = NodePath("NinePatchRect/VBoxContainer/Music")
+_sfxAudioControl = NodePath("NinePatchRect/VBoxContainer/SFX")
+_masterBusName = "Master"
+_musicBusName = "Music"
+_sfxBusName = "SFX"
+_masterDisplayName = "Master Volume"
+_musicDisplayName = "Music Volume"
+_sfxDisplayName = "Sfx Volume"
+_mainMenuButton = NodePath("NinePatchRect/HBoxContainer/MainMenu")
+_cancelButton = NodePath("NinePatchRect/HBoxContainer/Cancel")
+_saveButton = NodePath("NinePatchRect/HBoxContainer/Save")
+_okButton = NodePath("NinePatchRect/HBoxContainer/Ok")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1521306825]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.5
+offset_top = -121.0
+offset_right = 129.5
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_s5ji3")
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 50
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Label" type="Label" parent="NinePatchRect" unique_id=1533370641]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_e6s6k")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=885136900]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -76.5
+offset_right = -9.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer" unique_id=427360316]
+layout_mode = 2
+text = "Audio"
+label_settings = SubResource("LabelSettings_he6jc")
+horizontal_alignment = 1
+
+[node name="Master" parent="NinePatchRect/VBoxContainer" unique_id=1831130955 instance=ExtResource("2_0le60")]
+layout_mode = 2
+
+[node name="Music" parent="NinePatchRect/VBoxContainer" unique_id=1847322792 instance=ExtResource("2_0le60")]
+layout_mode = 2
+
+[node name="SFX" parent="NinePatchRect/VBoxContainer" unique_id=815867902 instance=ExtResource("2_0le60")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect" unique_id=2031571258]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -43.0
+offset_right = -4.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="MainMenu" type="Button" parent="NinePatchRect/HBoxContainer" unique_id=1042124894]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "MAIN MENU"
+
+[node name="Cancel" type="Button" parent="NinePatchRect/HBoxContainer" unique_id=244878372]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "CANCEL"
+
+[node name="Save" type="Button" parent="NinePatchRect/HBoxContainer" unique_id=1823571233]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "SAVE"
+
+[node name="Ok" type="Button" parent="NinePatchRect/HBoxContainer" unique_id=1166801863]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "OK"

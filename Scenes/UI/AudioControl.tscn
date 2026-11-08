@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cnksqfgavgva7"]
+
+[ext_resource type="Script" uid="uid://dify4l4uxx33n" path="res://Code/UI/AudioControl.cs" id="1_3axt6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5upxo"]
+font_size = 13
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ptfr"]
+font_size = 13
+
+[node name="AudioControl" type="HBoxContainer" unique_id=1831130955 node_paths=PackedStringArray("_volumeSlider", "_nameLabel", "_volumeLabel")]
+script = ExtResource("1_3axt6")
+_volumeSlider = NodePath("HSlider")
+_nameLabel = NodePath("Name")
+_volumeLabel = NodePath("Value")
+
+[node name="Name" type="Label" parent="." unique_id=457916880]
+layout_mode = 2
+text = "AUDIO BUS"
+label_settings = SubResource("LabelSettings_5upxo")
+
+[node name="HSlider" type="HSlider" parent="." unique_id=1168851604]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+
+[node name="Value" type="Label" parent="." unique_id=1227574085]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_3ptfr")

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ThrustClone"
-run/main_scene="uid://bfnyx1u1dbtld"
+run/main_scene="uid://bn7fi2cutcrmw"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 
 [autoload]
@@ -36,12 +36,19 @@ project/assembly_name="ThrustClone"
 folder_colors={
 "res://Art/": "red",
 "res://Code/": "orange",
-"res://Scene/": "purple"
+"res://Fonts/": "gray",
+"res://Scenes/": "purple",
+"res://UI/": "teal"
 }
 
 [global_group]
 
 rocket=""
+
+[gui]
+
+theme/custom="uid://cvlhjmso4y8iu"
+theme/custom_font="uid://cenkcg1aj6li"
 
 [input]
 
