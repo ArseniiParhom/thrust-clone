@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bngrvbx8c63h6"]
+
+[ext_resource type="Script" uid="uid://caecl2lnsqa6i" path="res://Code/Fuel.cs" id="1_ji4le"]
+[ext_resource type="Texture2D" uid="uid://cyfaus1g35tcv" path="res://Art/Characters/Futuristic Amber Energy Canister.png" id="1_kst74"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6s6k"]
+radius = 11.0
+height = 44.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6s6k"]
+size = Vector2(44, 19)
+
+[node name="Fuel" type="StaticBody2D" unique_id=1075416144 node_paths=PackedStringArray("_fuelArea")]
+collision_layer = 2
+script = ExtResource("1_ji4le")
+_fuelArea = NodePath("Area2D")
+
+[node name="FuturisticAmberEnergyCanister" type="Sprite2D" parent="." unique_id=1447969216]
+position = Vector2(4.7683716e-07, -13)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_kst74")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1392899251]
+position = Vector2(0, -12)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_e6s6k")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=746185512]
+position = Vector2(0, -12)
+rotation = 1.5707964
+collision_layer = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1162535143]
+position = Vector2(-22, 9.536743e-07)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_e6s6k")

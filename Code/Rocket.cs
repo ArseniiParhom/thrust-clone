@@ -10,22 +10,35 @@ namespace Thrust.Characters
 	public partial class Rocket : RigidBody2D, IDamageable
 	{
 		[Signal] public delegate void HealthChangedEventHandler(int current, int max);
+		[Signal] public delegate void FuelChangedEventHandler(int current, int max);
 		[Signal] public delegate void ExplodedEventHandler();
+
+		// MOVEMENT
 		[Export] public float ThrustForce = 300f;
 		[Export] public float RotationTorque = 900f;
-
 		[Export] public float MaxLinearSpeed = 160f;
 		[Export] public float MaxAngularSpeed = 100f;
+		
+		// COMBAT
 		[Export] private Gun _gun ;
 		[Export] private PackedScene _explosionScene;
-
+  
+		// HEALTH
 		[Export] private int _maxHealth = 3;
 		private int _health;
 
+		// FUEL
+		[Export] private int _maxFuel = 100;
+		[Export] private int _fuelChargeRate = 1;
+		[Export] private float _fuelConsumptionRate = 1;
+		private float _fuel;
+
+		// THRUST
 		[Export] private CpuParticles2D _flameParticles;
 		[Export] public float ThrustRampSpeed = 4;
 		private float _thrustLevel = 0;
 
+		// ROCKET SIZE
 		private float _rocketSize = 1f;
 
 		[Export(PropertyHint.Range, "0.4,1.2,0.05")]
@@ -52,6 +65,18 @@ namespace Thrust.Characters
 			private set { _health = value; }
 		}
 
+		public float Fuel
+		{
+			get { return _fuel; }
+			private set 
+			{ 
+				float clamped = Mathf.Clamp(value, 0, _maxFuel);
+				_fuel = clamped; 
+				GD.Print($"Rocket fuel: {_fuel}/{_maxFuel} should be decreased to {value}");
+				EmitSignal(SignalName.FuelChanged, _fuel, _maxFuel);
+			}
+		}
+
 		public bool IsDead
 		{
 			get {return _health <= 0;}
@@ -61,7 +86,7 @@ namespace Thrust.Characters
 		{
 			ApplyRocketSize();
 			CurrentHealth = MaxHealth;
-
+			Fuel = _maxFuel;
 		}
 
 		private void ApplyRocketSize()
@@ -130,12 +155,15 @@ namespace Thrust.Characters
 			bool isThrusting = Input.IsActionPressed(Config.RocketThrustActionName);
 			float target = isThrusting ? 1 : 0;
 			_thrustLevel = Mathf.MoveToward(_thrustLevel, target, ThrustRampSpeed * (float)delta);
-			if (isThrusting)
+			if (isThrusting && Fuel > 0)
 			{
 				Vector2 thrustDirection = -GlobalTransform.Y;
 				ApplyCentralForce(thrustDirection * ThrustForce);
+				float fuelConsumed = _fuelConsumptionRate * _thrustLevel * (float)delta;
+				// GD.Print($"Fuel consumed: {fuelConsumed}");
+				ConsumeFuel(fuelConsumed);
 			}
-			UpdateFlameParticles(_thrustLevel);
+			UpdateFlameParticles(Fuel > 0 ? _thrustLevel : 0);
 
 			if (!IsDead && _gun != null && Input.IsActionPressed(Config.ShootActionName))
 			{
@@ -164,6 +192,17 @@ namespace Thrust.Characters
 					maxAngularRadians
 				);
 			}
+		}
+
+		public void Refuel(int amount)
+		{
+			if (IsDead){ return; }
+			Fuel += amount;
+		}
+		public void ConsumeFuel(float amount)
+		{
+			if (IsDead){ return; }
+			Fuel -= amount;
 		}
 
 		public void TakeDamage(int amount)
