@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cktjyjvirmd8f" path="res://Art/Background/moon_mid.png" id="2_88x46"]
 [ext_resource type="Texture2D" uid="uid://ce07px73wwtuu" path="res://Art/Background/moon_earth_opaque.png" id="2_ns3so"]
 [ext_resource type="Texture2D" uid="uid://bxwgqlmgsldbc" path="res://Art/Background/moon_front.png" id="3_ns3so"]
-[ext_resource type="PackedScene" uid="uid://cfrmp4m70w0gi" path="res://Scene/Characters/AntiAircraftGun.tscn" id="7_ns3so"]
+[ext_resource type="PackedScene" uid="uid://cfrmp4m70w0gi" path="res://Scenes/Characters/AntiAircraftGun.tscn" id="7_ns3so"]
 
 [node name="Level1" type="Node2D" unique_id=1237842501]
 

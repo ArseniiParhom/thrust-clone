@@ -22,6 +22,10 @@ namespace Thrust.Characters
 		[Export] private int _maxHealth = 3;
 		private int _health;
 
+		[Export] private CpuParticles2D _flameParticles;
+		[Export] public float ThrustRampSpeed = 4;
+		private float _thrustLevel = 0;
+
 		private float _rocketSize = 1f;
 
 		[Export(PropertyHint.Range, "0.4,1.2,0.05")]
@@ -92,6 +96,9 @@ namespace Thrust.Characters
 				new Vector2(19f, 40f),
 				size
 			);
+
+			_flameParticles.Position = new Vector2(0, 40f) * size;
+			_flameParticles.Scale = Vector2.One * size;
 		}
 
 		private static void ResizeFoot(
@@ -120,11 +127,15 @@ namespace Thrust.Characters
 				ApplyTorque(rotationInput * RotationTorque);
 			}
 
-			if (Input.IsActionPressed(Config.RocketThrustActionName))
+			bool isThrusting = Input.IsActionPressed(Config.RocketThrustActionName);
+			float target = isThrusting ? 1 : 0;
+			_thrustLevel = Mathf.MoveToward(_thrustLevel, target, ThrustRampSpeed * (float)delta);
+			if (isThrusting)
 			{
 				Vector2 thrustDirection = -GlobalTransform.Y;
 				ApplyCentralForce(thrustDirection * ThrustForce);
 			}
+			UpdateFlameParticles(_thrustLevel);
 
 			if (!IsDead && _gun != null && Input.IsActionPressed(Config.ShootActionName))
 			{
@@ -191,6 +202,14 @@ namespace Thrust.Characters
 		private void OnExplosionFinished()
 		{
 			GameManager.Instance.EndGame();
+		}
+
+		private void UpdateFlameParticles(float thrustLevel)
+		{
+			_flameParticles.Emitting = thrustLevel > 0.01f;
+			_flameParticles.InitialVelocityMin = Mathf.Lerp(250,350, thrustLevel);
+			_flameParticles.InitialVelocityMax = Mathf.Lerp(300,400, thrustLevel);
+			// _flameParticles.ScaleAmountMax = Mathf.Lerp(0.5f, 1.2f, thrustLevel);
 		}
 	}
 }

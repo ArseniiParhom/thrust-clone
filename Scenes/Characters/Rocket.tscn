@@ -16,7 +16,11 @@ size = Vector2(18, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m0ktp"]
 size = Vector2(18, 7)
 
-[node name="Rocket" type="RigidBody2D" unique_id=1384398106 node_paths=PackedStringArray("_gun") groups=["rocket"]]
+[sub_resource type="Gradient" id="Gradient_m0ktp"]
+offsets = PackedFloat32Array(0.0066006603, 1)
+colors = PackedColorArray(1, 1, 0.011764706, 1, 1, 0.03137255, 0.03529412, 1)
+
+[node name="Rocket" type="RigidBody2D" unique_id=1384398106 node_paths=PackedStringArray("_gun", "_flameParticles") groups=["rocket"]]
 gravity_scale = 0.05
 contact_monitor = true
 max_contacts_reported = 8
@@ -27,6 +31,7 @@ angular_damp = 2.0
 script = ExtResource("1_dp6tq")
 _gun = NodePath("Muzzle")
 _explosionScene = ExtResource("2_m0ktp")
+_flameParticles = NodePath("FlameParticle")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=905169067 groups=["rocket"]]
 texture_filter = 1
@@ -45,6 +50,7 @@ position = Vector2(19, 40)
 shape = SubResource("RectangleShape2D_m0ktp")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1397288641]
+offset = Vector2(0, 70)
 
 [node name="Muzzle" type="Node2D" parent="." unique_id=1510080786]
 position = Vector2(0, -42)
@@ -52,5 +58,21 @@ script = ExtResource("3_x18n3")
 _bulletScene = ExtResource("4_esc57")
 _cooldown = 0.1
 _bulletSpeed = 300.0
+
+[node name="FlameParticle" type="CPUParticles2D" parent="." unique_id=905752771]
+position = Vector2(0, 39)
+amount = 100
+lifetime = 0.27
+lifetime_randomness = 0.72
+emission_shape = 3
+emission_rect_extents = Vector2(9, 0)
+direction = Vector2(0, 1)
+spread = 7.37
+gravity = Vector2(0, 1)
+initial_velocity_min = 327.48
+initial_velocity_max = 403.5
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_m0ktp")
 
 [connection signal="Exploded" from="." to="Sprite2D" method="hide"]
