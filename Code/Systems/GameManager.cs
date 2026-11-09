@@ -97,7 +97,7 @@ namespace Thrust.Systems
 			Score = 0;
 
 			// DEBUG: To start the game InGame
-			// ChangeState(GameStateType.InGame, force: true);
+			ChangeState(GameStateType.InGame, force: true);
 		}
 
 		#region Accessors
