@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ftk7uv31i8pc" path="res://Code/Rocket.cs" id="1_dp6tq"]
 [ext_resource type="Texture2D" uid="uid://cv14gkvawes05" path="res://Art/Characters/rocket.png" id="2_dp6tq"]
+[ext_resource type="PackedScene" uid="uid://dscurty2u3co4" path="res://Scenes/Effects/RocketExplosion.tscn" id="2_m0ktp"]
 [ext_resource type="Script" uid="uid://dx6giwja3vlqr" path="res://Code/Combat/Gun.cs" id="3_x18n3"]
 [ext_resource type="PackedScene" uid="uid://cvba72dd6mgdg" path="res://Scenes/Characters/RocketBullet.tscn" id="4_esc57"]
 
@@ -25,6 +26,7 @@ angular_damp_mode = 1
 angular_damp = 2.0
 script = ExtResource("1_dp6tq")
 _gun = NodePath("Muzzle")
+_explosionScene = ExtResource("2_m0ktp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=905169067 groups=["rocket"]]
 texture_filter = 1
@@ -50,3 +52,5 @@ script = ExtResource("3_x18n3")
 _bulletScene = ExtResource("4_esc57")
 _cooldown = 0.1
 _bulletSpeed = 300.0
+
+[connection signal="Exploded" from="." to="Sprite2D" method="hide"]

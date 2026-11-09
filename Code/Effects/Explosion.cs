@@ -5,7 +5,7 @@ namespace Thrust.Effects
 {
     public partial class Explosion : AnimatedSprite2D
     {
-        [Signal] public delegate void AnimationFinishedEventHandler();
+        [Signal] public delegate void FinishedEventHandler();
 
 
         public override void _Ready()
@@ -16,7 +16,7 @@ namespace Thrust.Effects
 
         private void OnAnimationFinished()
         {
-            EmitSignal(SignalName.AnimationFinished);
+            EmitSignal(SignalName.Finished);
             QueueFree();
         }
     }

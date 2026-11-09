@@ -1,6 +1,8 @@
+using System;
 using Godot;
 using Thrust.Combat;
 using Thrust.Configuration;
+using Thrust.Effects;
 using Thrust.Systems;
 
 namespace Thrust.Characters
@@ -8,12 +10,14 @@ namespace Thrust.Characters
 	public partial class Rocket : RigidBody2D, IDamageable
 	{
 		[Signal] public delegate void HealthChangedEventHandler(int current, int max);
+		[Signal] public delegate void ExplodedEventHandler();
 		[Export] public float ThrustForce = 300f;
 		[Export] public float RotationTorque = 900f;
 
 		[Export] public float MaxLinearSpeed = 160f;
 		[Export] public float MaxAngularSpeed = 100f;
 		[Export] private Gun _gun ;
+		[Export] private PackedScene _explosionScene;
 
 		[Export] private int _maxHealth = 3;
 		private int _health;
@@ -104,6 +108,8 @@ namespace Thrust.Characters
 
 		public override void _PhysicsProcess(double delta)
 		{
+			if (IsDead){return;}
+
 			float rotationInput = Input.GetAxis(
 				Config.RotateLeftActionName,
 				Config.RotateRightActionName
@@ -158,8 +164,33 @@ namespace Thrust.Characters
 
 			if (CurrentHealth == 0)
 			{
-				GameManager.Instance.EndGame();
+				Explode();
 			}
+		}
+
+		private void Explode()
+		{
+			EmitSignal(SignalName.Exploded);
+
+			SetDeferred(RigidBody2D.PropertyName.Freeze, true);
+			SetDeferred(CollisionObject2D.PropertyName.CollisionLayer,0);
+
+			if(_explosionScene == null)
+			{
+				GameManager.Instance.EndGame();
+				return;
+			}
+
+			Explosion explosion = _explosionScene.Instantiate<Explosion>();
+			explosion.GlobalPosition = GlobalPosition;
+			explosion.Finished += OnExplosionFinished;
+			GetTree().CurrentScene.AddChild(explosion);
+			
+		}
+
+		private void OnExplosionFinished()
+		{
+			GameManager.Instance.EndGame();
 		}
 	}
 }
