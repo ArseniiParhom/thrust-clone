@@ -70,10 +70,9 @@ namespace Thrust.Characters
 			get { return _fuel; }
 			private set 
 			{ 
-				GD.Print($"Setting fuel: {value}");
 				float clamped = Mathf.Clamp(value, 0, _maxFuel);
 				_fuel = clamped; 
-				GD.Print($"Rocket fuel: {_fuel}/{_maxFuel}");
+				GD.Print($"Rocket fuel: {_fuel}/{_maxFuel} should be decreased to {value}");
 				EmitSignal(SignalName.FuelChanged, _fuel, _maxFuel);
 			}
 		}
@@ -161,7 +160,7 @@ namespace Thrust.Characters
 				Vector2 thrustDirection = -GlobalTransform.Y;
 				ApplyCentralForce(thrustDirection * ThrustForce);
 				float fuelConsumed = _fuelConsumptionRate * _thrustLevel * (float)delta;
-				GD.Print($"Fuel consumed: {fuelConsumed}");
+				// GD.Print($"Fuel consumed: {fuelConsumed}");
 				ConsumeFuel(fuelConsumed);
 			}
 			UpdateFlameParticles(Fuel > 0 ? _thrustLevel : 0);

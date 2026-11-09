@@ -10,6 +10,8 @@ namespace Thrust.Characters
 		
 		public override void _Ready()
 		{
+			_fuelArea.BodyEntered += OnBodyEntered;
+			_fuelArea.BodyExited += OnBodyExited;
 		}
 		public override void _Process(double delta)
 		{
