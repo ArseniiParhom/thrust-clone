@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Thrust.Combat;
 using Thrust.Configuration;
+using Thrust.Effects;
 using Thrust.Systems;
 
 namespace Thrust.Characters{
@@ -13,6 +14,7 @@ public partial class AntiAircraftGun : StaticBody2D, IDamageable
 		[Export] private Vector2 _direction = new Vector2(1,-1);
 		[Export] private Gun _gun;
 		[Export] private float _fireTolerance = 0.1f;
+		[Export] private PackedScene _explosionScene;
 
 		private bool _isDestroyed = false;
 		private Rocket _rocket;
@@ -83,6 +85,13 @@ public partial class AntiAircraftGun : StaticBody2D, IDamageable
 
 			_isDestroyed = true;
 
+			if(_explosionScene != null)
+			{
+				Explosion explosion = _explosionScene.Instantiate<Explosion>();
+				explosion.GlobalPosition = GlobalPosition;
+				GetTree().CurrentScene.AddChild(explosion);
+			}
+			//TODO: (maybe) add score to the rocket
 			QueueFree();
 		}
 	}
