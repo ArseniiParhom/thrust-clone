@@ -8,7 +8,5 @@ namespace Thrust.Configuration
         public const string ShootActionName = "shoot";
 
         public const string RocketGroupName = "rocket";
-
-        public const int InitialLives = 3;
     }
 }

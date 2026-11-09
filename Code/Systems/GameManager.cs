@@ -28,11 +28,9 @@ namespace Thrust.Systems
 
 		[Signal] public delegate void GameOverEventHandler();
 		[Signal] public delegate void ScoreChangedEventHandler(int newScore);
-		[Signal] public delegate void LivesChangedEventHandler(int newLives);
 		[Signal] public delegate void RespawnEventHandler();
 
 		private int _score = 0;
-		private int _lives = Config.InitialLives;
 
 		private SceneTree _sceneTree = null;
 		private List<GameStateBase> _gameStates = new List<GameStateBase>
@@ -63,15 +61,6 @@ namespace Thrust.Systems
 			{
 				_score = value;
 				EmitSignal(SignalName.ScoreChanged, _score);
-			}
-		}
-		public int Lives
-		{
-			get { return _lives; }
-			private set
-			{
-				_lives = value;
-				EmitSignal(SignalName.LivesChanged, _lives);
 			}
 		}
 		public SceneTree SceneTree
@@ -106,10 +95,9 @@ namespace Thrust.Systems
 
 			// TODO: Don't call this when loading the game from a save file.
 			Score = 0;
-			Lives = Config.InitialLives;
 
 			// DEBUG: To start the game InGame
-			ChangeState(GameStateType.InGame, force: true);
+			// ChangeState(GameStateType.InGame, force: true);
 		}
 
 		#region Accessors
@@ -174,7 +162,6 @@ namespace Thrust.Systems
 				return false;
 			}
 			Score = 0;
-			Lives = Config.InitialLives;
 
 			// The level scene is added deferred in OnEnter. A deferred call queued
 			// after it runs once the scene (and its HUD) is in the tree.
@@ -195,25 +182,6 @@ namespace Thrust.Systems
 		{
 			if (amount <= 0) return;
 			Score += amount;
-		}
-		//TODO: Get clear if Lives should be used
-		public void IncrementLives()
-		{
-			Lives++;
-		}
-		public void DecrementLives()
-		{
-			Lives--;
-
-			if (Lives > 0)
-			{
-				EmitSignal(SignalName.Respawn);
-			}
-			else
-			{
-				EmitSignal(SignalName.GameOver);
-				ChangeState(GameStateType.GameOver);
-			}
 		}
 		#endregion Accessors
 		#region Private
